@@ -1797,7 +1797,7 @@ html, body {
 
       <!-- CTA tlačítko -->
       <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 8px;">
-        <a href="klobasky_microsite_v3.html" target="_blank" style="
+        <button onclick="document.getElementById('microsite-overlay').style.display='flex'" style="
           display: inline-flex;
           align-items: center;
           gap: 12px;
@@ -1808,15 +1808,54 @@ html, body {
           font-size: 1.05rem;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          text-decoration: none;
+          border: none;
+          cursor: pointer;
           padding: 16px 36px;
           border-radius: 2px;
           transition: background 0.2s;
         " onmouseover="this.style.background='#d4b585'" onmouseout="this.style.background='#C1A273'">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#163029" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Zobrazit návrh microsite
-        </a>
-        <span style="font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; color: rgba(232,225,206,0.4); font-style: italic; letter-spacing: 0.03em;">Otevře se v novém okně</span>
+        </button>
+        <span style="font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; color: rgba(232,225,206,0.4); font-style: italic; letter-spacing: 0.03em;">Klikněte pro zobrazení</span>
+      </div>
+
+      <!-- Microsite image overlay -->
+      <div id="microsite-overlay" onclick="this.style.display='none'" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.92);
+        z-index: 9999;
+        overflow-y: auto;
+        cursor: zoom-out;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+      ">
+        <div style="position: relative; max-width: 480px; width: 100%;">
+          <button onclick="event.stopPropagation(); document.getElementById('microsite-overlay').style.display='none'" style="
+            position: sticky;
+            top: 0;
+            left: 100%;
+            display: block;
+            margin-left: auto;
+            margin-bottom: 12px;
+            background: #C1A273;
+            color: #163029;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: 700;
+            z-index: 10000;
+            line-height: 1;
+          ">&times;</button>
+          <img src="klobasky_microsite_draft.jpg" style="width: 100%; display: block; border-radius: 4px;" alt="Návrh microsite">
+          <p style="text-align:center; font-family:'Source Sans 3',sans-serif; font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:16px;">Klikněte kamkoliv pro zavření</p>
+        </div>
       </div>
 
     </div>
