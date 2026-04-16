@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krahulecká fermentovaná klobása — Krahulík</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1A5632;
+  --gold:#C1A273;
+  --dark:#0f1c15;
+  --dark2:#163029;
+  --cream:#E8E1CE;
+  --brown:#5B3226;
+  --font-h:'Alfa Slab One',serif;
+  --font-b:'Source Sans 3',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--cream);font-family:var(--font-b);font-size:18px;line-height:1.6;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:linear-gradient(to bottom,rgba(15,28,21,.97) 0%,rgba(15,28,21,0) 100%);
+  backdrop-filter:blur(4px);
+}
+.nav-logo img{height:48px;width:auto;opacity:.95;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{
+  color:var(--cream);text-decoration:none;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;font-weight:300;
+  opacity:.7;transition:opacity .25s,color .25s;
+}
+.nav-links a:hover{opacity:1;color:var(--gold);}
+
+/* ─── HERO ─── */
+#hero{
+  position:relative;min-height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:flex-start;padding:0 80px 100px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(155deg,#0a160e 0%,#0f1c15 35%,#163029 65%,#0d1f18 100%);
+  z-index:0;
+}
+.hero-mist{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse 110% 60% at 55% 0%,rgba(193,162,115,.05) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 80% at 5% 100%,rgba(15,28,21,.85) 0%,transparent 60%);
+}
+.hero-topo{
+  position:absolute;inset:0;z-index:1;opacity:.06;
+  background-image:
+    repeating-radial-gradient(ellipse 200% 80% at 65% 50%,transparent 0,transparent 34px,var(--gold) 35px,var(--gold) 36px),
+    repeating-radial-gradient(ellipse 160% 60% at 65% 50%,transparent 0,transparent 60px,var(--gold) 61px,var(--gold) 62px);
+}
+.hero-giant{
+  position:absolute;right:-5vw;top:50%;transform:translateY(-50%);
+  font-family:var(--font-h);font-size:clamp(80px,15vw,220px);
+  color:transparent;-webkit-text-stroke:1px rgba(193,162,115,.12);
+  letter-spacing:.04em;line-height:1;pointer-events:none;z-index:1;
+  user-select:none;white-space:nowrap;
+}
+.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero-eyebrow{
+  font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:300;margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+.hero-h1{
+  font-family:var(--font-h);font-size:clamp(38px,6vw,84px);
+  color:var(--cream);line-height:1.05;letter-spacing:.02em;
+  margin-bottom:24px;
+}
+.hero-h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{
+  font-size:clamp(16px,1.8vw,22px);color:rgba(232,225,206,.7);
+  font-weight:300;margin-bottom:40px;max-width:520px;line-height:1.55;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 36px;border:1px solid rgba(193,162,115,.5);
+  color:var(--gold);font-family:var(--font-b);font-size:.85rem;
+  letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  transition:background .3s,border-color .3s;
+}
+.hero-cta:hover{background:rgba(193,162,115,.1);border-color:var(--gold);}
+.hero-scroll{
+  position:absolute;bottom:40px;right:60px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:.45;
+}
+.hero-scroll span{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;writing-mode:vertical-rl;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);}
+
+/* ─── GOLD DIVIDER ─── */
+.gold-divider{
+  width:100%;height:1px;
+  background:linear-gradient(to right,transparent,rgba(193,162,115,.35),transparent);
+}
+
+/* ─── SECTION WRAPPER ─── */
+section{padding:100px 80px;}
+.section-eyebrow{
+  font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:300;margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--gold);}
+.section-h{
+  font-family:var(--font-h);font-size:clamp(28px,4vw,52px);
+  color:var(--cream);line-height:1.1;letter-spacing:.02em;
+  margin-bottom:20px;
+}
+.section-lead{
+  font-size:clamp(16px,1.6vw,20px);color:rgba(232,225,206,.65);
+  font-weight:300;max-width:620px;line-height:1.65;
+}
+
+/* ─── BIG IDEA ─── */
+#big-idea{
+  background:linear-gradient(160deg,#0a160e 0%,#0f1c15 60%,#1a3d2a 100%);
+  position:relative;overflow:hidden;
+}
+.big-idea-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.big-idea-quote{
+  font-family:var(--font-h);font-size:clamp(26px,3.5vw,48px);
+  color:var(--cream);line-height:1.15;letter-spacing:.02em;
+  position:relative;padding-left:28px;
+}
+.big-idea-quote::before{
+  content:'';position:absolute;left:0;top:8px;
+  width:3px;height:calc(100% - 8px);background:var(--gold);
+}
+.big-idea-sub{
+  font-size:clamp(15px,1.5vw,19px);color:rgba(232,225,206,.6);
+  font-weight:300;margin-top:24px;line-height:1.65;
+}
+.pillars{display:flex;flex-direction:column;gap:20px;}
+.pillar{
+  padding:20px 24px;border:1px solid rgba(193,162,115,.18);
+  border-left:3px solid rgba(193,162,115,.5);
+  background:rgba(193,162,115,.04);
+}
+.pillar-label{
+  font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);font-weight:300;margin-bottom:6px;
+}
+.pillar-text{font-size:.95rem;color:var(--cream);font-weight:300;}
+.pillar-fact{font-size:.82rem;color:rgba(193,162,115,.65);margin-top:4px;}
+
+/* ─── TIMELINE ─── */
+#timeline{
+  background:var(--dark);
+  position:relative;
+}
+.timeline-header{text-align:center;margin-bottom:70px;}
+.timeline-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;max-width:1300px;margin:0 auto;
+}
+.tl-step{
+  background:rgba(193,162,115,.04);border:1px solid rgba(193,162,115,.12);
+  padding:36px 28px;position:relative;
+  transition:background .3s;
+}
+.tl-step:hover{background:rgba(193,162,115,.08);}
+.tl-num{
+  font-family:var(--font-h);font-size:clamp(36px,5vw,72px);
+  color:rgba(193,162,115,.15);line-height:1;
+  position:absolute;top:20px;right:20px;
+}
+.tl-days{
+  font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;font-weight:300;
+}
+.tl-name{
+  font-family:var(--font-h);font-size:clamp(18px,2vw,26px);
+  color:var(--cream);margin-bottom:12px;line-height:1.1;
+}
+.tl-desc{font-size:.9rem;color:rgba(232,225,206,.6);font-weight:300;line-height:1.6;}
+.tl-icon{font-size:2rem;margin-bottom:16px;opacity:.75;}
+
+/* ─── VARIANTY ─── */
+#varianty{
+  background:linear-gradient(180deg,var(--dark) 0%,#0f1c15 100%);
+}
+.varianty-header{text-align:center;margin-bottom:70px;}
+.varianty-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;max-width:1200px;margin:0 auto;
+}
+.variant-card{
+  border:1px solid rgba(193,162,115,.15);
+  background:rgba(193,162,115,.04);
+  padding:48px 36px;
+  position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s;
+}
+.variant-card:hover{transform:translateY(-4px);border-color:rgba(193,162,115,.35);}
+.variant-num{
+  position:absolute;top:24px;right:24px;
+  font-family:var(--font-h);font-size:4rem;
+  color:rgba(193,162,115,.08);line-height:1;
+}
+.variant-tag{
+  font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;font-weight:300;
+}
+.variant-name{
+  font-family:var(--font-h);font-size:clamp(22px,2.5vw,32px);
+  color:var(--cream);margin-bottom:8px;line-height:1.1;
+}
+.variant-subtitle{
+  font-size:.88rem;color:rgba(193,162,115,.7);
+  margin-bottom:20px;font-style:italic;
+}
+.variant-desc{font-size:.92rem;color:rgba(232,225,206,.6);font-weight:300;line-height:1.65;}
+.variant-line{
+  width:40px;height:2px;background:var(--gold);
+  margin:24px 0;opacity:.5;
+}
+.variant-usp{font-size:.82rem;color:rgba(232,225,206,.5);line-height:1.8;}
+.variant-usp li{list-style:none;padding-left:16px;position:relative;}
+.variant-usp li::before{
+  content:'—';position:absolute;left:0;color:rgba(193,162,115,.5);
+}
+
+/* ─── PŮVOD ─── */
+#puvod{
+  background:linear-gradient(160deg,#0a160e 0%,#0f1c15 100%);
+  position:relative;
+}
+.puvod-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;max-width:1200px;margin:0 auto;
+}
+.puvod-map{
+  background:rgba(193,162,115,.05);border:1px solid rgba(193,162,115,.15);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.puvod-map-inner{
+  width:100%;height:100%;
+  background:
+    radial-gradient(circle 200px at 55% 48%,rgba(26,86,50,.4) 0%,transparent 70%),
+    linear-gradient(145deg,#0d1a0f 0%,#163029 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;
+}
+.map-dot{
+  width:12px;height:12px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 6px rgba(193,162,115,.2),0 0 0 14px rgba(193,162,115,.08);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 6px rgba(193,162,115,.2),0 0 0 14px rgba(193,162,115,.08);}
+  50%{box-shadow:0 0 0 10px rgba(193,162,115,.15),0 0 0 22px rgba(193,162,115,.05);}
+}
+.map-label{
+  font-family:var(--font-h);font-size:1.1rem;color:var(--gold);letter-spacing:.06em;
+}
+.map-sublabel{font-size:.78rem;color:rgba(232,225,206,.5);letter-spacing:.15em;text-transform:uppercase;}
+.puvod-text .section-h{margin-bottom:24px;}
+.puvod-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px;
+}
+.puvod-stat{
+  padding:20px;border:1px solid rgba(193,162,115,.12);
+  background:rgba(193,162,115,.04);
+}
+.puvod-stat-num{
+  font-family:var(--font-h);font-size:2.2rem;color:var(--gold);line-height:1;
+}
+.puvod-stat-label{font-size:.78rem;color:rgba(232,225,206,.5);margin-top:6px;font-weight:300;}
+.puvod-citace{
+  margin-top:36px;padding:24px;border-left:3px solid rgba(193,162,115,.4);
+  background:rgba(193,162,115,.04);
+}
+.puvod-citace p{font-size:.95rem;color:rgba(232,225,206,.7);font-style:italic;font-weight:300;line-height:1.7;}
+.puvod-citace cite{font-size:.78rem;color:var(--gold);font-style:normal;margin-top:10px;display:block;letter-spacing:.1em;}
+
+/* ─── KDE KOUPIT ─── */
+#kde-koupit{
+  background:var(--dark);
+  text-align:center;
+}
+.kde-grid{
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+  margin:48px 0;
+}
+.kde-item{
+  padding:16px 32px;border:1px solid rgba(193,162,115,.2);
+  font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(232,225,206,.7);
+  transition:border-color .3s,color .3s;
+}
+.kde-item:hover{border-color:rgba(193,162,115,.5);color:var(--gold);}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#080f0a;
+  padding:60px 80px 40px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.footer-logo img{height:56px;opacity:.7;}
+.footer-copy{font-size:.75rem;color:rgba(232,225,206,.3);letter-spacing:.1em;}
+
+/* ─── COPY STRIP ─── */
+.copy-strip{
+  background:rgba(193,162,115,.07);
+  border-top:1px solid rgba(193,162,115,.12);
+  border-bottom:1px solid rgba(193,162,115,.12);
+  padding:40px 80px;
+  display:flex;justify-content:center;
+}
+.copy-strip-text{
+  font-family:var(--font-h);
+  font-size:clamp(16px,2.2vw,28px);
+  color:rgba(232,225,206,.55);
+  letter-spacing:.04em;
+  text-align:center;
+  line-height:1.4;
+}
+.copy-strip-text em{color:var(--gold);font-style:normal;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  section{padding:70px 24px;}
+  #hero{padding:0 24px 80px;}
+  .big-idea-inner,.puvod-inner{grid-template-columns:1fr;}
+  .timeline-grid{grid-template-columns:1fr 1fr;}
+  .varianty-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:24px;align-items:flex-start;}
+}
+@media(max-width:560px){
+  .timeline-grid{grid-template-columns:1fr;}
+  .puvod-stats{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a href="#hero"><img src="krahulik_logo_main.png" alt="Krahulík"></a>
+  <ul class="nav-links">
+    <li><a href="#big-idea">Příběh</a></li>
+    <li><a href="#timeline">Výroba</a></li>
+    <li><a href="#varianty">Varianty</a></li>
+    <li><a href="#puvod">Původ</a></li>
+    <li><a href="#kde-koupit">Kde koupit</a></li>
+  </ul>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-mist"></div>
+  <div class="hero-topo"></div>
+  <div class="hero-giant">KRAHULECKÁ</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fermentovaná klobása</div>
+    <h1 class="hero-h1">
+      Příroda nezná<br>zkratky. <em>Ani my.</em>
+    </h1>
+    <p class="hero-sub">
+      Krahulecká. Zraje v lese, dozrává na talíři.<br>
+      16 dní výroby. Bukový kouř. Srdce Vysočiny.
+    </p>
+    <a href="#big-idea" class="hero-cta">Zjistit víc ↓</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ COPY STRIP 1 ══════ -->
+<div class="copy-strip">
+  <p class="copy-strip-text">
+    „Příroda nám dala chuť. <em>My jsme přidali čas.</em>"
+  </p>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ BIG IDEA ══════ -->
+<section id="big-idea">
+  <div class="big-idea-inner">
+    <div>
+      <div class="section-eyebrow">Big idea</div>
+      <blockquote class="big-idea-quote">
+        „Příroda nezná zkratky. Ani my."
+      </blockquote>
+      <p class="big-idea-sub">
+        Fermentace je prastarý přírodní proces — příroda si bere čas, protože musí. My na ni nespěcháme. 16 dní výroby, bukový kouř, přírodní sušárny, chuť ze srdce Vysočiny — to nejde urychlit. A právě proto to chutná jinak.
+      </p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-label">Čas</div>
+        <div class="pillar-text">16 dní výroby, které nejde zkrátit</div>
+        <div class="pillar-fact">2 dny fermentace + 2 týdny zrání</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-label">Původ</div>
+        <div class="pillar-text">Ze srdce Vysočiny</div>
+        <div class="pillar-fact">Přírodní sušárny v Krahulčí u Telče</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-label">Kouř</div>
+        <div class="pillar-text">Uzená na bukovém dřevě</div>
+        <div class="pillar-fact">Studený kouř z bukového dřeva</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-label">Maso</div>
+        <div class="pillar-text">136g masa na 100g výrobku</div>
+        <div class="pillar-fact">Vyšší než průmyslový standard. Přírodní vepřová střeva. Bez lepku.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ TIMELINE ══════ -->
+<section id="timeline">
+  <div class="timeline-header">
+    <div class="section-eyebrow" style="justify-content:center;">Výroba</div>
+    <h2 class="section-h" style="text-align:center;">16 dní, které nejde zkrátit</h2>
+    <p class="section-lead" style="margin:0 auto;text-align:center;">
+      Každý krok má svůj rytmus. Příroda je mistr a my jsme trpěliví žáci.
+    </p>
+  </div>
+
+  <div class="timeline-grid">
+    <div class="tl-step">
+      <div class="tl-num">01</div>
+      <div class="tl-icon">🌡️</div>
+      <div class="tl-days">Den 1–2</div>
+      <div class="tl-name">Fermentace</div>
+      <div class="tl-desc">25 °C, 90% vlhkost. Bakterie mléčného kvašení budují chuť, konzistenci a barvu. Příroda pracuje — my čekáme.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">02</div>
+      <div class="tl-icon">🌿</div>
+      <div class="tl-days">Po fermentaci</div>
+      <div class="tl-name">Uzení</div>
+      <div class="tl-desc">Studený kouř z bukového dřeva. Pomalé, šetrné, tradiční. Bukový kouř si cestu ke chuti nenechá překazit.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">03</div>
+      <div class="tl-icon">🏔️</div>
+      <div class="tl-days">Den 3–16</div>
+      <div class="tl-name">Zrání</div>
+      <div class="tl-desc">18 °C v přírodních sušárnách Vysočiny. Ticho, vzduch, čas. Genius loci určuje výslednou chuť.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">04</div>
+      <div class="tl-icon">✓</div>
+      <div class="tl-days">Den 17</div>
+      <div class="tl-name">Krahulecká je hotová</div>
+      <div class="tl-desc">Výsledek 30+ let zkušeností a tisíciletí fermentační tradice. Bez kompromisů, bez zkratek.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ COPY STRIP 2 ══════ -->
+<div class="copy-strip">
+  <p class="copy-strip-text">
+    „<em>Ticho lesa těsně před svítáním.</em><br>
+    Člověk je součástí přírody, ne její návštěvník."
+  </p>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ VARIANTY ══════ -->
+<section id="varianty">
+  <div class="varianty-header">
+    <div class="section-eyebrow" style="justify-content:center;">Varianty</div>
+    <h2 class="section-h" style="text-align:center;">Tři povahy. Jeden charakter.</h2>
+    <p class="section-lead" style="margin:0 auto;text-align:center;">
+      Každá varianta čerpá z přírody Vysočiny. Jalovec, medvědí česnek, buk — příroda věděla, co dělá.
+    </p>
+  </div>
+
+  <div class="varianty-grid">
+    <div class="variant-card">
+      <div class="variant-num">01</div>
+      <div class="variant-tag">Původní receptura</div>
+      <div class="variant-name">Original</div>
+      <div class="variant-subtitle">Uzená na bukových štěpkách v srdci Vysočiny</div>
+      <div class="variant-desc">
+        Základ, od kterého vše vychází. Přirozená chuť fermentace, bukový kouř, čistá surovina. Žádný přídatný důvod k zakoupení — samotná chuť stačí.
+      </div>
+      <div class="variant-line"></div>
+      <ul class="variant-usp">
+        <li>136g masa na 100g výrobku</li>
+        <li>Přírodní vepřová střeva</li>
+        <li>Bez lepku, bez zbytečností</li>
+        <li>250g flow-pack / 170g sáček</li>
+      </ul>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-num">02</div>
+      <div class="variant-tag">Lesní bylina</div>
+      <div class="variant-name">S příchutí<br>jalovce</div>
+      <div class="variant-subtitle">Jalovčinky z lesů Vysočiny</div>
+      <div class="variant-desc">
+        Jalovec roste v lesích, kde zraje klobása. Jehličnatá, pryskyřičná, trochu divoká. Tohle je chuť Vysočiny — pro ty, kdo chtějí víc než základ.
+      </div>
+      <div class="variant-line"></div>
+      <ul class="variant-usp">
+        <li>Jalovčinky z regionu Vysočina</li>
+        <li>Charakterní, ne přebíjející</li>
+        <li>Doporučeno k tmavému pivu</li>
+        <li>250g flow-pack / 170g sáček</li>
+      </ul>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-num">03</div>
+      <div class="variant-tag">Jarní bylina</div>
+      <div class="variant-name">S medvědím<br>česnekem</div>
+      <div class="variant-subtitle">Křehká a výrazná jarní bylina</div>
+      <div class="variant-desc">
+        Medvědí česnek roste jarní a krátce. Křehký, jemný, ale výrazný. V klobáse vytváří kontrast — svěží bylina v intenzivní fermentované chuti.
+      </div>
+      <div class="variant-line"></div>
+      <ul class="variant-usp">
+        <li>Sezónní bylina, autentický původ</li>
+        <li>Jemnější charakter než klasický česnek</li>
+        <li>Jarní svěžest v zimní chuti</li>
+        <li>250g flow-pack / 170g sáček</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ PŮVOD ══════ -->
+<section id="puvod">
+  <div class="puvod-inner">
+    <div class="puvod-map">
+      <div class="puvod-map-inner">
+        <div class="map-dot"></div>
+        <div class="map-label">Krahulčí u Telče</div>
+        <div class="map-sublabel">Vysočina, Česká republika</div>
+      </div>
+    </div>
+
+    <div class="puvod-text">
+      <div class="section-eyebrow">Původ</div>
+      <h2 class="section-h">Vysočina určuje chuť</h2>
+      <p class="section-lead">
+        Prostředí, kde klobása zraje, není náhodné. Vzduch, vlhkost, teplota — příroda Vysočiny přímo určuje výslednou chuť. Genius loci není marketing, je to technologie.
+      </p>
+
+      <div class="puvod-stats">
+        <div class="puvod-stat">
+          <div class="puvod-stat-num">30+</div>
+          <div class="puvod-stat-label">let nepřetržité tradice fermentace</div>
+        </div>
+        <div class="puvod-stat">
+          <div class="puvod-stat-num">16</div>
+          <div class="puvod-stat-label">dní výroby, které nejde zkrátit</div>
+        </div>
+        <div class="puvod-stat">
+          <div class="puvod-stat-num">10 000</div>
+          <div class="puvod-stat-label">let fermentační tradice lidstva</div>
+        </div>
+        <div class="puvod-stat">
+          <div class="puvod-stat-num">136g</div>
+          <div class="puvod-stat-label">masa na 100g výrobku</div>
+        </div>
+      </div>
+
+      <div class="puvod-citace">
+        <p>„Podmínky, kde probíhá zrání, určují nejen kvalitu, ale i chuť. Proto nikdy nebudeme vyrábět jinde."</p>
+        <cite>— Mistr výroby, Krahulík Krahulčí</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ COPY STRIP 3 ══════ -->
+<div class="copy-strip">
+  <p class="copy-strip-text">
+    „2 dny fermentace. 2 týdny zrání.<br>
+    <em>16 dní, které nejde zkrátit.</em>"
+  </p>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ KDE KOUPIT ══════ -->
+<section id="kde-koupit">
+  <div class="section-eyebrow" style="justify-content:center;">Dostupnost</div>
+  <h2 class="section-h" style="text-align:center;">Kde nás najdete</h2>
+  <p class="section-lead" style="margin:0 auto;text-align:center;">
+    Krahulecká fermentovaná klobása je dostupná v předních obchodních řetězcích a na podnikových prodejnách.
+  </p>
+
+  <div class="kde-grid">
+    <div class="kde-item">Tesco</div>
+    <div class="kde-item">Globus</div>
+    <div class="kde-item">Albert</div>
+    <div class="kde-item">Podnikové prodejny Krahulík</div>
+  </div>
+
+  <p style="color:rgba(232,225,206,.4);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;">
+    Dostupnost dle regionu. Aktuální přehled na krahulík.cz
+  </p>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-logo">
+    <img src="krahulik_logo_main.png" alt="Krahulík">
+  </div>
+  <div class="footer-copy">
+    © 2026 Krahulík s.r.o. · Krahulčí u Telče · Vysočina<br>
+    <span style="color:rgba(193,162,115,.35);">Kreativní koncept: feopatito studio</span>
+  </div>
+</footer>
+
+</body>
+</html>
