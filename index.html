@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krahulík — Krahulecká fermentovaná klobása 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   BRAND TOKENS — Krahulík 2025
+═══════════════════════════════════════ */
+:root {
+  /* Primary */
+  --green:        #1A5632;
+  --gold:         #C1A273;
+  --white:        #FFFFFF;
+  --black:        #000000;
+  /* Secondary */
+  --brown:        #5B3226;
+  --green-deep:   #163029;
+  --wine:         #7F2628;
+  --cream:        #E8E1CE;
+  /* Derived */
+  --gold-muted:   rgba(193,162,115,0.6);
+  --gold-faint:   rgba(193,162,115,0.12);
+  --green-overlay: rgba(26,86,50,0.85);
+  --text-body:    rgba(232,225,206,0.85);
+  --text-muted:   rgba(232,225,206,0.5);
+}
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--green-deep);
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════
+   DECK & SLIDES
+═══════════════════════════════════════ */
+#deck {
+  position: relative;
+  width: 100vw; height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  position: absolute;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 ratio */
+  max-height: 100vh;
+  max-width: 177.78vh; /* 16:9 ratio */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+  background: var(--green-deep);
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ═══════════════════════════════════════
+   SLIDE INNER LAYOUT
+═══════════════════════════════════════ */
+.slide-inner {
+  position: relative; z-index: 10;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 100px 80px;
+  padding-top: 72px; /* header ribbon space */
+}
+@media (max-width: 900px) {
+  .slide-inner { padding: 72px 40px 70px; }
+}
+
+/* ═══════════════════════════════════════
+   HEADER RIBBON — appears on every slide
+═══════════════════════════════════════ */
+.slide-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  height: 56px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px 0 36px;
+  border-bottom: 1.5px solid var(--gold);
+}
+.slide-header::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(193,162,115,0.25), transparent);
+}
+#s1 .slide-header .header-logo { display: none; }
+.header-ribon-right {
+  display: flex; align-items: center; gap: 20px;
+}
+.header-slogan {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(193,162,115,0.55);
+}
+.header-line-v {
+  width: 1px; height: 20px;
+  background: rgba(193,162,115,0.3);
+}
+
+/* ═══════════════════════════════════════
+   STAMP / BADGE
+═══════════════════════════════════════ */
+.stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  outline: 1px solid rgba(193,162,115,0.3);
+  outline-offset: 4px;
+  background: transparent;
+  text-align: center;
+  padding: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
+.stamp .stamp-top {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 0.42rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.4;
+}
+.stamp .stamp-year {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  line-height: 1;
+  margin: 2px 0;
+}
+.stamp .stamp-bot {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.38rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(193,162,115,0.65);
+}
+
+/* ═══════════════════════════════════════
+   MAIN LOGO
+═══════════════════════════════════════ */
+.main-logo {
+  max-width: clamp(280px, 38vw, 480px);
+  height: auto;
+  object-fit: contain;
+  filter: none;
+}
+
+/* ═══════════════════════════════════════
+   NEW STAMP / PECET
+═══════════════════════════════════════ */
+.new-stamp-pos {
+  position: absolute;
+  bottom: 80px; right: 80px;
+  opacity: 0.85;
+  width: 120px;
+  height: auto;
+}
+.new-stamp-pos img {
+  width: 100%;
+  height: auto;
+}
+
+/* ═══════════════════════════════════════
+   SHARED TYPOGRAPHIC CLASSES
+═══════════════════════════════════════ */
+.eyebrow {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.display-heading {
+  font-family: 'Alfa Slab One', serif;
+  line-height: 1.0;
+  letter-spacing: 0.02em;
+}
+.serif-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.body-text {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  line-height: 1.72;
+  color: var(--text-body);
+}
+
+/* ═══════════════════════════════════════
+   DECORATIVE ELEMENTS
+═══════════════════════════════════════ */
+.gold-line {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(193,162,115,0.2));
+}
+.gold-line-center {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.gold-line-short {
+  display: block;
+  width: 60px; height: 1.5px;
+  background: var(--gold);
+}
+
+/* ═══════════════════════════════════════
+   NAV BAR (bottom)
+═══════════════════════════════════════ */
+#nav {
+  position: fixed;
+  bottom: 28px; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px;
+  z-index: 1000;
+}
+.nav-btn {
+  width: 42px; height: 42px;
+  border: 1px solid rgba(193,162,115,0.35);
+  border-radius: 50%;
+  background: rgba(22,48,41,0.75);
+  backdrop-filter: blur(10px);
+  color: var(--gold);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+.nav-btn:hover {
+  background: rgba(193,162,115,0.15);
+  border-color: var(--gold);
+}
+.nav-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+#slide-counter {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-muted);
+  min-width: 60px; text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   PROGRESS DOTS (right side)
+═══════════════════════════════════════ */
+#progress {
+  position: fixed;
+  right: 24px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 8px;
+  z-index: 1000;
+}
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(193,162,115,0.25);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.dot.active { background: var(--gold); transform: scale(1.5); }
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 1 — TITLE
+══════════════════════════════════════════════════════════ */
+#s1 {
+  background: var(--green-deep);
+}
+#s1 .bg-texture {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 70%, rgba(26,86,50,0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 10% 10%, rgba(26,86,50,0.3) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 90% 90%, rgba(26,86,50,0.25) 0%, transparent 50%);
+}
+#s1 .ghost-text {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(80px, 14vw, 220px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(193,162,115,0.07);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+#s1 .s1-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+#s1 .brand-main {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(64px, 12vw, 148px);
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+#s1 .brand-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(16px, 2.2vw, 27px);
+  color: var(--cream);
+  letter-spacing: 0.04em;
+}
+#s1 .brand-year {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.55em;
+  color: var(--gold-muted);
+  text-transform: uppercase;
+}
+#s1 .credit {
+  position: absolute;
+  bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+#s1 .credit div {
+  width: 40px; height: 1px;
+  background: rgba(193,162,115,0.2);
+}
+#s1 .credit span {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  color: rgba(193,162,115,0.3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+#s1 .stamp-pos {
+  position: absolute;
+  bottom: 90px; right: 80px;
+  opacity: 0.7;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 2 — BIG IDEA
+══════════════════════════════════════════════════════════ */
+#s2 {
+  background: var(--green-deep);
+}
+#s2 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 5% 50%, rgba(26,86,50,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 95% 30%, rgba(193,162,115,0.04) 0%, transparent 50%);
+}
+#s2 .left-bar {
+  position: absolute;
+  left: 0; top: 56px; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--green) 0%, var(--gold) 50%, transparent 100%);
+}
+#s2 .s2-content {
+  position: relative; z-index: 5;
+  max-width: 820px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+#s2 .big-headline {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(36px, 6.5vw, 82px);
+  color: var(--cream);
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+}
+#s2 .big-headline strong {
+  color: var(--gold);
+  font-weight: inherit;
+}
+#s2 .sub-copy {
+  font-family: 'Source Sans 3', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: clamp(15px, 1.8vw, 24px);
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+#s2 .body-p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: var(--text-body);
+  line-height: 1.75;
+  max-width: 560px;
+}
+#s2 .pillars {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+#s2 .pillar-tag {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  background: var(--gold);
+  padding: 5px 12px;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 3 — PRODUKTY
+══════════════════════════════════════════════════════════ */
+#s3 {
+  background: var(--green);
+}
+#s3 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% 100%, var(--green-deep) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(22,48,41,0.5) 0%, transparent 45%);
+}
+#s3 .s3-content {
+  position: relative; z-index: 5;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 36px;
+}
+#s3 .s3-head {
+  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;
+}
+#s3 .s3-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(28px, 4.5vw, 58px);
+  color: var(--cream);
+  line-height: 1.05;
+}
+#s3 .s3-subtitle {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+
+/* Product Mockups Grid */
+#s3 .products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-mock {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--green-deep);
+  border: 1px solid rgba(193,162,115,0.2);
+  display: flex; flex-direction: column;
+  height: clamp(380px, 42vh, 480px);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.product-mock:hover {
+  border-color: rgba(193,162,115,0.6);
+  transform: translateY(-3px);
+}
+
+/* Botanical decoration area */
+
+.product-botanical img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.product-botanical {
+  flex: 1;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: visible;
+  padding: 8px;
+  min-height: 280px;
+}
+
+/* Ghosted "texture" for botanical area */
+.product-botanical::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 40%, rgba(26,86,50,0.6) 0%, transparent 70%);
+}
+
+/* Product name middle band */
+.product-name-band {
+  padding: 12px 16px 8px;
+  text-align: center;
+  position: relative;
+}
+.product-name-band .pn-variant {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  margin-bottom: 3px;
+}
+.product-name-band .pn-name {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Gold bottom block */
+.product-bottom-block {
+  background: var(--gold);
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.product-bottom-block .pb-brand {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--green-deep);
+  text-transform: uppercase;
+}
+.product-bottom-block .pb-weight {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  color: var(--brown);
+  letter-spacing: 0.1em;
+}
+
+/* ── Botanical SVG elements ── */
+.botanical-svg {
+  position: relative; z-index: 2;
+  opacity: 0.65;
+}
+
+/* Decorative corner lines on mock */
+.product-mock::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 5;
+}
+
+/* Product desc strip */
+.product-desc-strip {
+  padding: 0 16px 10px;
+  text-align: center;
+}
+.product-desc-strip p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Fact row */
+#s3 .fact-row {
+  display: flex; align-items: center; gap: 0;
+  border: 1px solid rgba(193,162,115,0.3);
+  background: rgba(22,48,41,0.6);
+  align-self: flex-start;
+}
+.fact-cell {
+  padding: 14px 28px;
+  display: flex; flex-direction: column; gap: 2px;
+  border-right: 1px solid rgba(193,162,115,0.2);
+}
+.fact-cell:last-child { border-right: none; }
+.fact-cell .fc-num {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(20px, 2.5vw, 32px);
+  color: var(--gold);
+  line-height: 1;
+}
+.fact-cell .fc-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 4 — VÝROBNÍ PŘÍBĚH / TIMELINE
+══════════════════════════════════════════════════════════ */
+#s4 {
+  background: var(--green-deep);
+}
+#s4 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(193,162,115,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 60% at 0% 100%, rgba(26,86,50,0.3) 0%, transparent 55%);
+}
+#s4 .s4-content {
+  position: relative; z-index: 5;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 44px;
+}
+#s4 .s4-head {
+  display: flex; flex-direction: column; gap: 12px;
+}
+#s4 .s4-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(26px, 4vw, 54px);
+  color: var(--cream);
+  line-height: 1.05;
+}
+#s4 .timeline {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr 32px 1fr;
+  align-items: start;
+}
+.tl-step {
+  padding: 28px 24px;
+  border-top: 2px solid rgba(193,162,115,0.15);
+  position: relative;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.tl-step::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 0;
+  width: 56px; height: 2px;
+  background: var(--gold);
+}
+.tl-step .tl-day {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.tl-step .tl-icon {
+  font-size: 1.5rem;
+  opacity: 0.45;
+  line-height: 1;
+}
+.tl-step .tl-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(16px, 1.8vw, 24px);
+  color: var(--cream);
+  letter-spacing: 0.04em;
+}
+.tl-step .tl-desc {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--text-body);
+  line-height: 1.68;
+}
+.tl-arrow {
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 50px;
+  color: rgba(193,162,115,0.35);
+  font-size: 1.1rem;
+}
+#s4 .result-box {
+  display: flex; align-items: center; gap: 0;
+  border: 1px solid var(--gold);
+  background: rgba(193,162,115,0.05);
+  overflow: hidden;
+}
+#s4 .result-day-block {
+  background: var(--gold);
+  padding: 18px 28px;
+  flex-shrink: 0;
+}
+#s4 .result-day-block .rd-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+#s4 .result-day-block .rd-day {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(20px, 2.5vw, 32px);
+  color: var(--green-deep);
+  line-height: 1;
+}
+#s4 .result-text-block {
+  padding: 18px 28px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+#s4 .result-text-block .rt-main {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--cream);
+}
+#s4 .result-text-block .rt-sub {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 5 — HEADLINE ŘADY
+══════════════════════════════════════════════════════════ */
+#s5 {
+  background: var(--green-deep);
+}
+#s5 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,86,50,0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 60% at 5% 0%, rgba(26,86,50,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 60% at 95% 100%, rgba(26,86,50,0.2) 0%, transparent 50%);
+}
+#s5 .s5-content {
+  position: relative; z-index: 5;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 36px;
+  max-width: 860px;
+}
+#s5 .primary-headline {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(28px, 5.5vw, 68px);
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+#s5 .primary-headline .hl-accent { color: var(--gold); }
+#s5 .primary-headline .hl-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--cream);
+}
+#s5 .alt-headlines {
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%; max-width: 600px;
+  text-align: left;
+}
+.alt-hl {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(193,162,115,0.1);
+}
+.alt-hl:last-child { border-bottom: none; }
+.alt-hl .ah-dot {
+  width: 5px; height: 5px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.alt-hl .ah-text {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: clamp(13px, 1.4vw, 16px);
+  color: var(--text-body);
+  line-height: 1.5;
+}
+#s5 .proof-row {
+  display: flex; gap: 32px; flex-wrap: wrap; justify-content: center;
+}
+.proof-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.proof-item .pi-num {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(22px, 3vw, 38px);
+  color: var(--gold);
+  line-height: 1;
+}
+.proof-item .pi-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 1.4;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 6 — VIZUÁLNÍ SMĚR
+══════════════════════════════════════════════════════════ */
+#s6 {
+  background: var(--green);
+}
+#s6 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 100% 50%, rgba(193,162,115,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(22,48,41,0.6) 0%, transparent 50%);
+}
+#s6 .s6-content {
+  position: relative; z-index: 5;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 32px;
+}
+#s6 .s6-head {
+  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;
+}
+#s6 .s6-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(26px, 4vw, 52px);
+  color: var(--cream);
+  line-height: 1.05;
+}
+.human-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1px solid rgba(193,162,115,0.3);
+  padding: 7px 14px;
+  background: rgba(22,48,41,0.5);
+}
+.human-badge .hb-dot {
+  width: 6px; height: 6px; flex-shrink: 0;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.human-badge span {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(193,162,115,0.75);
+  text-transform: uppercase;
+}
+#s6 .concepts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 40px;
+}
+.concept-col { display: flex; flex-direction: column; gap: 16px; }
+.concept-tag {
+  display: flex; align-items: center; gap: 12px;
+}
+.concept-letter {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Alfa Slab One', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.concept-sublabel {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-muted);
+  text-transform: uppercase;
+}
+.concept-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(17px, 2vw, 24px);
+  color: var(--cream);
+  line-height: 1.15;
+}
+.concept-desc {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.83rem;
+  color: var(--text-body);
+  line-height: 1.72;
+}
+.concept-usage {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  color: rgba(193,162,115,0.5);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.vert-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(193,162,115,0.3), transparent);
+}
+#s6 .mood-bar {
+  border-top: 1px solid rgba(193,162,115,0.15);
+  padding-top: 20px;
+  display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap;
+}
+#s6 .mood-bar .mb-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+#s6 .mood-bar .mb-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(13px, 1.4vw, 18px);
+  color: var(--cream);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 7 — TÓNALITA
+══════════════════════════════════════════════════════════ */
+#s7 {
+  background: var(--green-deep);
+}
+#s7 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 100% 30%, rgba(193,162,115,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 0% 80%, rgba(26,86,50,0.25) 0%, transparent 55%);
+}
+#s7 .s7-content {
+  position: relative; z-index: 5;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 32px;
+}
+#s7 .s7-head {
+  display: flex; flex-direction: column; gap: 12px;
+}
+#s7 .s7-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(26px, 4vw, 52px);
+  color: var(--cream);
+}
+#s7 .quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.q-item {
+  padding: 22px 24px 22px 20px;
+  border-left: 2px solid var(--gold);
+  background: rgba(26,86,50,0.12);
+  position: relative;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.q-item:nth-child(5) {
+  grid-column: 1 / -1;
+  border-left-color: rgba(193,162,115,0.5);
+  background: rgba(193,162,115,0.05);
+}
+.q-item .qm {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: rgba(193,162,115,0.12);
+  line-height: 0.7;
+  position: absolute;
+  top: 10px; right: 16px;
+  user-select: none;
+}
+.q-item .q-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(13px, 1.4vw, 17px);
+  color: var(--cream);
+  line-height: 1.55;
+  position: relative; z-index: 2;
+}
+.q-item .q-text em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 700;
+  font-family: 'Source Sans 3', sans-serif;
+}
+#s7 .tone-tags {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.tone-tag {
+  display: flex; align-items: center; gap: 7px;
+}
+.tone-tag .tt-dot {
+  width: 4px; height: 4px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.tone-tag span {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ██ SLIDE 8 — NEXT STEPS
+══════════════════════════════════════════════════════════ */
+#s8 {
+  background: var(--green-deep);
+}
+#s8 .bg-layer {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 20%, rgba(26,86,50,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(22,48,41,0.5) 0%, transparent 55%);
+}
+#s8 .s8-content {
+  position: relative; z-index: 5;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 40px;
+}
+#s8 .s8-head { display: flex; flex-direction: column; gap: 12px; }
+#s8 .s8-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(26px, 4vw, 52px);
+  color: var(--cream);
+}
+#s8 .steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+#s8 .steps-row::before {
+  content: '';
+  position: absolute;
+  top: 22px; left: 20px; right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(193,162,115,0.15) 100%);
+  z-index: 0;
+}
+.step-col {
+  padding: 50px 18px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+}
+.step-col .sc-dot {
+  position: absolute;
+  top: 14px; left: 18px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: var(--green-deep);
+  z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-col .sc-dot::after {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.step-col .sc-num {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-muted);
+  text-transform: uppercase;
+}
+.step-col .sc-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: var(--cream);
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+}
+.step-col .sc-desc {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+#s8 .final-claim-box {
+  position: relative;
+  border: 1px solid rgba(193,162,115,0.3);
+  background: rgba(193,162,115,0.04);
+  padding: 24px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+#s8 .final-claim-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+#s8 .final-claim-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+#s8 .fc-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 24px);
+  color: var(--cream);
+}
+#s8 .footer-row {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+}
+#s8 .footer-row span {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: rgba(193,162,115,0.3);
+  text-transform: uppercase;
+}
+
+
+/* ═══════════════════════════════════════
+   PRINT
+═══════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   LIGHTBOX / MODAL
+═══════════════════════════════════════ */
+#lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(15px);
+  z-index: 2000;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 40px;
+  cursor: zoom-out;
+}
+#lightbox.active { display: flex; }
+#lightbox-content {
+  max-width: 95vw; max-height: 90vh;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  border: 1px solid rgba(193,162,115,0.3);
+  background: #000;
+}
+#lightbox img, #lightbox video {
+  width: auto; height: auto;
+  max-width: 100%; max-height: 90vh;
+  display: block;
+}
+.zoom-hint {
+  cursor: zoom-in;
+  transition: transform 0.3s;
+}
+.zoom-hint:hover {
+  transform: scale(1.02);
+  outline: 2px solid var(--gold);
+}
+</style>
+</head>
+<body>
+
+<div id="deck">
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+══════════════════════════════════════════════════════════ -->
+<section class="slide active" id="s1">
+  <div class="bg-texture"></div>
+  
+
+  <!-- Header ribbon -->
+  <div class="slide-header">
+    <div class="header-logo">Krahulík</div>
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Krahulecká fermentovaná klobása</span>
+    </div>
+  </div>
+
+  <div class="slide-inner" style="padding-bottom: 0;">
+    <div class="s1-content">
+      <span class="eyebrow">Nová produktová řada krahuleckých klobás 2026</span>
+      <div class="gold-line-short" style="margin: 0 auto;"></div>
+
+      <img src="krahulik_logo_main.png" alt="Krahulík Logo" class="main-logo">
+
+      <div class="gold-line-center" style="width: 200px; margin: 0 auto;"></div>
+
+      <div class="brand-sub" style="font-family: 'Alfa Slab One', serif; font-style: normal; font-weight: 400; font-size: clamp(20px, 3.2vw, 42px); color: var(--cream); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.15;">Když nevíme kudy, můžeme skončit<br>úplě někde jinde</div>
+      <div class="brand-year">2 0 2 6</div>
+    </div>
+  </div>
+
+  <!-- Stamp -->
+  
+
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 2 — BIG IDEA
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s2">
+  <div class="bg-layer"></div>
+  <div class="left-bar"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s2-content">
+      <span class="eyebrow">Big Idea</span>
+      <div class="gold-line-short"></div>
+
+      <div class="big-headline">
+        PŘÍRODA NEZNÁ<br>ZKRATKY. <strong>ANI MY.</strong>
+      </div>
+
+      <div class="sub-copy">
+        „Příroda nám dala chuť. My jsme přidali čas."
+      </div>
+
+      <p class="body-p">
+        Fermentace je prastarý přírodní proces — příroda si bere čas, protože musí. My na ni nespěcháme. 16 dní výroby, bukový kouř, přírodní sušárny Vysočiny — to nejde urychlit. A právě proto to chutná jinak.
+      </p>
+
+      <div class="pillars">
+        <span class="pillar-tag">Konkrétní</span>
+        <span class="pillar-tag">Nezkopírovatelná</span>
+        <span class="pillar-tag">Odpovídá době</span>
+        <span class="pillar-tag">16 dní</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 3 — PRODUKTY
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s3">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Ze srdce Vysočiny</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s3-content">
+
+      <div class="s3-head">
+        <div>
+          <span class="eyebrow">Produktová řada</span>
+          <div class="s3-title" style="margin-top:8px;">Ze srdce Vysočiny</div>
+        </div>
+        <div class="s3-subtitle">Krahulecká fermentovaná klobása<br>250g flow-pack · 170g štíhlý sáček</div>
+      </div>
+
+      <!-- Product Mockups -->
+      <div class="products-grid">
+
+        <!-- ORIGINAL -->
+        <div class="product-mock">
+          <div class="product-botanical"><img src="klobasky-packaging/klobasa_original.png" alt="Original"></div>
+          <div class="product-name-band">
+            <div class="pn-variant">Varianta I</div>
+            <div class="pn-name">Original</div>
+          </div>
+          <div class="product-desc-strip">
+            <p>Uzená na bukových štěpkách v srdci Vysočiny</p>
+          </div>
+          <div class="product-bottom-block">
+            <span class="pb-weight" style="margin: 0 auto; font-size: 0.85rem; font-weight: 700;">250 g</span>
+          </div>
+        </div>
+
+        <!-- S PŘÍCHUTÍ JALOVCE -->
+        <div class="product-mock">
+          <div class="product-botanical"><img src="klobasky-packaging/klobasa_jalovec.png" alt="Jalovec"></div>
+          <div class="product-name-band">
+            <div class="pn-variant">Varianta II</div>
+            <div class="pn-name">S příchutí jalovce</div>
+          </div>
+          <div class="product-desc-strip">
+            <p>Jalovčinky z lesů Vysočiny. Pryskyřičná svěžest.</p>
+          </div>
+          <div class="product-bottom-block">
+            <span class="pb-weight" style="margin: 0 auto; font-size: 0.85rem; font-weight: 700;">250 g</span>
+          </div>
+        </div>
+
+        <!-- S MEDVĚDÍM ČESNEKEM -->
+        <div class="product-mock">
+          <div class="product-botanical"><img src="klobasky-packaging/klobasa_cesnek.png" alt="Česnek"></div>
+          <div class="product-name-band">
+            <div class="pn-variant">Varianta III</div>
+            <div class="pn-name">S medvědím česnekem</div>
+          </div>
+          <div class="product-desc-strip">
+            <p>Jarní bylina, křehká a výrazná. Příroda věděla.</p>
+          </div>
+          <div class="product-bottom-block">
+            <span class="pb-weight" style="margin: 0 auto; font-size: 0.85rem; font-weight: 700;">250 g</span>
+          </div>
+        </div>
+
+      </div><!-- /products-grid -->
+
+      <!-- Fact bar -->
+      <div class="fact-row">
+        <div class="fact-cell">
+          <span class="fc-num">136g</span>
+          <span class="fc-label">masa na 100 g výrobku</span>
+        </div>
+        <div class="fact-cell">
+          <span class="fc-num">16 dní</span>
+          <span class="fc-label">výroby, které nejde zkrátit</span>
+        </div>
+        <div class="fact-cell">
+          <span class="fc-num">30+ let</span>
+          <span class="fc-label">nepřetržité tradice</span>
+        </div>
+        <div class="fact-cell" style="border-right:none;">
+          <span class="fc-num">0</span>
+          <span class="fc-label">lepku · přidaných škrobů</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 4 — VÝROBNÍ PŘÍBĚH
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s4">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Výrobní příběh</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s4-content">
+
+      <div class="s4-head">
+        <span class="eyebrow">Výrobní příběh</span>
+        <div class="s4-title">16 dní, které nejde zkrátit</div>
+        <div class="gold-line-short"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-step">
+          <div class="tl-icon">◉</div>
+          <div class="tl-day">Den 1–2</div>
+          <div class="tl-title">Fermentace</div>
+          <div class="tl-desc">25 °C, 90% vlhkost. Bakterie mléčného kvašení budují chuť, konzistenci a barvu. Žádný spěch — příroda pracuje svým tempem. Technologie sahá 10 000 let zpátky.</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step">
+          <div class="tl-icon">◈</div>
+          <div class="tl-day">Poté</div>
+          <div class="tl-title">Uzení</div>
+          <div class="tl-desc">Studený bukový kouř ve speciálních zakuřovacích komorách. Jalovec, medvědí česnek, buk — příroda věděla, co dělá. Kouř si cestu ke chuti nenechá překazit.</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step">
+          <div class="tl-icon">◇</div>
+          <div class="tl-day">Dny 3–16</div>
+          <div class="tl-title">Zrání</div>
+          <div class="tl-desc">18 °C, přírodní sušárny Vysočiny. Ticho a čas. Genius loci — prostředí Krahulčí u Telče přímo určuje výslednou chuť. Podmínky, které nelze přenést jinam.</div>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-day-block">
+          <div class="rd-label">Den</div>
+          <div class="rd-day">17</div>
+        </div>
+        <div class="result-text-block">
+          <div class="rt-main" style="font-family: 'Alfa Slab One', serif; font-size: clamp(20px, 2.8vw, 36px); color: var(--gold); letter-spacing: 0.04em; line-height: 1.05; font-style: normal;">Krahulecká je hotová.</div>
+          <div class="rt-sub">Technologie nepřetržitě používaná 30+ let · Krahulčí u Telče, Vysočina</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 5 — HEADLINE ŘADY
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s5">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Headline řady</span>
+    </div>
+  </div>
+
+    <div class="slide-inner" style="padding-top: 72px; overflow-y: auto;">
+    <div class="s5-content" style="gap: 16px; max-width: 100%;">
+
+      <!-- Eyebrow: Primární headline -->
+      <span class="eyebrow" style="font-size: 0.58rem;">Primární headline</span>
+
+      <!-- Hlavní headline — menší než původně -->
+      <div class="primary-headline" style="font-size: clamp(24px, 4vw, 54px); line-height: 1.0; margin-top: 0; font-family: 'Alfa Slab One', serif; font-style: normal;">
+        KRAHULECKÁ.<br>
+        <span style="color: var(--gold);">Zraje u lesa,</span><br>
+        <span style="color: var(--cream);">dozrává na talíři.</span>
+      </div>
+
+      <!-- Tabulka — jen Zkráceně, font jako tělo -->
+      <p style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: clamp(12px, 1.1vw, 14px); color: var(--text-body); line-height: 1.65; margin-top: 4px;">Je to věta, která v devíti slovech prodá terroir, řemeslo, původ i chuť — a nechá zákazníka, aby si zbytek dokreslil vlastní fantazií.</p>
+
+      <!-- Body ve 2 sloupcích, menší písmo -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin-top: 4px;">
+        <div class="alt-hl" style="padding: 8px 0; font-size: 0.78rem;"><div class="ah-dot"></div><div class="ah-text" style="font-size: clamp(11px, 0.95vw, 13px); font-family: 'Source Sans 3', sans-serif; font-style: normal; font-weight: 300;">16 dní výroby, které nejde zkrátit — 2 dny fermentace, 2 týdny zrání na Vysočině</div></div>
+        <div class="alt-hl" style="padding: 8px 0;"><div class="ah-dot"></div><div class="ah-text" style="font-size: clamp(11px, 0.95vw, 13px); font-family: 'Source Sans 3', sans-serif; font-style: normal; font-weight: 300;">Uzená na bukovém dřevě v srdci Vysočiny — kouř si cestu ke chuti nenechá překazit</div></div>
+        <div class="alt-hl" style="padding: 8px 0;"><div class="ah-dot"></div><div class="ah-text" style="font-size: clamp(11px, 0.95vw, 13px); font-family: 'Source Sans 3', sans-serif; font-style: normal; font-weight: 300;">Příroda nám dala jalovec, medvědí česnek a buk — my jsme přidali čas</div></div>
+        <div class="alt-hl" style="padding: 8px 0;"><div class="ah-dot"></div><div class="ah-text" style="font-size: clamp(11px, 0.95vw, 13px); font-family: 'Source Sans 3', sans-serif; font-style: normal; font-weight: 300;">136 g masa na 100 g výrobku — poctivost, která má svůj čas</div></div>
+      </div>
+
+      <!-- Sub-message -->
+      <div style="margin-top: 8px;">
+        <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: 0.55rem; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px;">Sub-message · Klíčová copy linka</div>
+        <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(15px, 1.8vw, 22px); color: var(--cream); border-left: 2px solid var(--gold); padding-left: 18px; line-height: 1.4;">„Příroda nám dala chuť. My jsme přidali čas."</div>
+      </div>
+
+      <!-- Proof row -->
+      <div class="proof-row" style="margin-top: 8px;">
+        <div class="proof-item" style="border-right: 1px solid rgba(193,162,115,0.2); padding-right: 32px;">
+          <div class="pi-num">2 dny</div><div class="pi-label">fermentace<br>25 °C · 90% vlhkost</div>
+        </div>
+        <div class="proof-item" style="border-right: 1px solid rgba(193,162,115,0.2); padding-right: 32px;">
+          <div class="pi-num">2 týdny</div><div class="pi-label">zrání<br>18 °C · sušárny Vysočiny</div>
+        </div>
+        <div class="proof-item">
+          <div class="pi-num">1 místo</div><div class="pi-label">Krahulčí u Telče<br>Genius loci</div>
+        </div>
+      </div>
+
+      <!-- Doplňkové copy linky ve 2 sloupcích, malé písmo -->
+      <div style="margin-top: 12px; border-top: 1px solid rgba(193,162,115,0.15); padding-top: 12px;">
+        <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: 0.52rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Další copy linky</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px;">
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(10px, 0.85vw, 12px); color: var(--text-muted); line-height: 1.6; font-style: italic;">„2 dny fermentace. 2 týdny zrání. 16 dní, které nejde zkrátit."</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(10px, 0.85vw, 12px); color: var(--text-muted); line-height: 1.6; font-style: italic;">„Bukový kouř si cestu ke chuti nenechá překazit."</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(10px, 0.85vw, 12px); color: var(--text-muted); line-height: 1.6; font-style: italic;">„Krahulecká nevznikla v továrně. Vznikla v lese a dočkala se v sušárně."</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(10px, 0.85vw, 12px); color: var(--text-muted); line-height: 1.6; font-style: italic;">„Jalovec. Medvědí česnek. Buk. Příroda věděla, co dělá."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 5b — OBHAJOBA HEADLINU
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s5b">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Proč to funguje</span>
+    </div>
+  </div>
+
+  <div class="slide-inner" style="padding-top: 72px; overflow-y: auto;">
+    <div class="s5-content" style="gap: 20px; max-width: 100%; text-align: center; align-items: center;">
+
+      <span class="eyebrow" style="font-size: 0.58rem;">Obhajoba headlinu</span>
+      <div class="gold-line-short" style="margin: 0 auto;"></div>
+
+      <div style="height: 20px;"></div>
+
+      <div class="primary-headline" style="font-size: clamp(28px, 5vw, 68px); line-height: 1.0; text-align: center; font-family: 'Alfa Slab One', serif; font-style: normal;">
+        KRAHULECKÁ.<br>
+        <span style="color: var(--gold);">Zraje u lesa,</span><br>
+        <span style="color: var(--cream);">dozrává na talíři.</span>
+      </div>
+
+      <div style="height: 32px;"></div>
+
+      <p style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(12px, 1.1vw, 15px); color: var(--text-muted); width: 100%; text-align: left; margin: 0 0 16px 0;">Ten headline funguje na třech úrovních najednou:</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap: 24px; width: 100%; margin-top: 0; text-align: left;">
+
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--gold); padding-top: 14px;">
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;">01 — Doslova</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: clamp(11px, 1vw, 13px); color: var(--cream); margin-bottom: 4px;">Výrobní proces</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(11px, 1vw, 13px); color: var(--text-body); line-height: 1.65;">„Zraje u lesa" odkazuje na přírodní sušárny v Krahulčí u Telče — klobása doslova zraje v prostředí lesa Vysočiny, kde mikroklima (vlhkost, teplota, vzduch) přímo formuje chuť. Není to metafora, je to popis toho, co se reálně děje.<br><br>„Dozrává na talíři" pak říká, že příběh se dokončí až ve chvíli, kdy ji sníte — klobása není hotový produkt z továrny, je to živý výsledek přírody a řemesla.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--gold); padding-top: 14px;">
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;">02 — Emocionálně</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: clamp(11px, 1vw, 13px); color: var(--cream); margin-bottom: 4px;">Pocit zákazníka</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(11px, 1vw, 13px); color: var(--text-body); line-height: 1.65;">Člověk si představí les, klid, mlhu, ranní světlo — a najednou to není jen klobása z regálu. Je to kousek přírody.<br><br>Tenhle obraz funguje dřív, než zákazník přečte složení nebo gramáž.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--gold); padding-top: 14px;">
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;">03 — Strategicky</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: clamp(11px, 1vw, 13px); color: var(--cream); margin-bottom: 4px;">Diferenciace</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(11px, 1vw, 13px); color: var(--text-body); line-height: 1.65;">Žádná průmyslová klobása nemůže toto říct. Buď to tak není, nebo to tak nedělá.<br><br>Headline říká co smí říct jen Krahulík — protože jen Krahulík to tak skutečně dělá.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid rgba(193,162,115,0.4); padding-top: 14px; background: rgba(193,162,115,0.05); padding: 14px; margin-top: -14px;">
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold-muted); text-transform: uppercase;">Zkráceně</div>
+          <div style="font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: clamp(11px, 1vw, 13px); color: var(--text-body); line-height: 1.65;">Je to věta, která v devíti slovech prodá terroir, řemeslo, původ i chuť — a nechá zákazníka, aby si zbytek dokreslil vlastní fantazií.<br><br>Nejlepší headline nepopisuje produkt, ale vyvolá zážitek ještě před prvním soustem. Tohle to dělá.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE REF — VIZUÁLNÍ REFERENCE
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s6">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Vizuální identita</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s6-content">
+
+      <div class="s6-head">
+        <div>
+          <span class="eyebrow">Vizuální jazyk</span>
+          <div class="s6-title" style="margin-top:8px;">Vizuální směr</div>
+        </div>
+
+      </div>
+
+      <div class="gold-line" style="width: 100%;"></div>
+
+      <div class="concepts-grid">
+        <div class="concept-col">
+          <div class="concept-tag">
+            <div class="concept-letter">A</div>
+            <span class="concept-sublabel">Retail &amp; Packaging</span>
+          </div>
+          <div class="concept-title">Retail + ATL</div>
+          <p class="concept-desc">
+            Produkt. Klobása na kůře buku nebo přírodní neutrální ploše. Přirozený gestus, ne póza. Kolem ingredience: jalovčinky, medvědí česnek, větvička buku. Atmosférické ranní světlo nebo zlatá hodinka. Prvky kouře a bukové štěpky. Vypíchnutí hlavních USP produktu.
+          </p>
+          <span class="concept-usage">Packaging · Tesco leták · In-store stojan · Online reklama</span>
+        </div>
+        <div class="vert-divider"></div>
+        <div class="concept-col">
+          <div class="concept-tag">
+            <div class="concept-letter">B</div>
+            <span class="concept-sublabel">Web &amp; Velké formáty</span>
+          </div>
+          <div class="concept-title">Člověk v lese</div>
+          <p class="concept-desc">
+            Postava (záda nebo profil) na okraji lesa nebo v sušárně. Drží klobásu nebo kouká na les. Atmosféra: ticho, ranní světlo, mlha. Klobása viditelná jako součást scény, ne jako reklama.
+          </p>
+          <span class="concept-usage">Web hero · Instagram · In-store velkoplošný · 600 × 800</span>
+        </div>
+      </div>
+
+      <div class="mood-bar">
+        <span class="mb-label">Mood</span>
+        <div style="width:1px; height:24px; background:rgba(193,162,115,0.3);"></div>
+        <span style="font-family: 'Alfa Slab One', serif; font-size: clamp(13px, 1.4vw, 18px); color: var(--cream); letter-spacing: 0.03em;">„Ticho lesa těsně před svítáním. Člověk je součástí přírody, ne její návštěvník."</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 6 — VIZUÁLNÍ SMĚR
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s-ref">
+  <div class="bg-layer"></div>
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+    </div>
+  </div>
+  <div class="slide-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:80px 60px 40px;">
+    <div style="text-align:center;">
+      <span class="eyebrow">Vizuální reference</span>
+      <div style="font-family: 'Alfa Slab One', serif; font-size: clamp(20px, 2.5vw, 36px); color: var(--cream); letter-spacing: 0.04em; margin-top: 8px;">Nastínění vizuální možné cesty.</div>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:1200px;">
+      <div class="zoom-hint" onclick="openLightbox(this)" style="overflow:hidden;border-radius:4px;height:clamp(220px,28vh,350px);">
+        <img src="ref_forest.jpg" alt="Les a produkt" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="zoom-hint" onclick="openLightbox(this)" style="overflow:hidden;border-radius:4px;height:clamp(220px,28vh,350px);">
+        <img src="ref_packaging.jpg" alt="Packaging" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="zoom-hint" onclick="openLightbox(this)" style="overflow:hidden;border-radius:4px;height:clamp(220px,28vh,350px);">
+        <img src="ref_smokehouse.jpg" alt="Sušárna" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+
+      <!-- Video uprostřed ve druhém řádku gridu -->
+      <div class="zoom-hint" onclick="openLightbox(this)" style="grid-column: 2 / 3; width:100%; max-width:400px; margin:0 auto; border-radius:4px; overflow:hidden;">
+        <video autoplay muted loop playsinline style="width:100%;max-height:clamp(180px,22vh,280px);object-fit:cover;display:block;">
+          <source src="ref_video.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Packaging visual vpravo -->
+      <div class="zoom-hint" onclick="openLightbox(this)" style="grid-column: 3 / 4; overflow:hidden;border-radius:4px;height:clamp(180px,22vh,280px);">
+        <img src="Krahulecka_KV_produktovy_final_v2.jpg" alt="Packaging visual" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 7 — TÓNALITA
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s7">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Tónalita komunikace</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s7-content">
+
+      <div class="s7-head">
+        <span class="eyebrow">Tónalita komunikace</span>
+        <div class="s7-title">Jak to říkáme</div>
+        <div class="gold-line-short"></div>
+      </div>
+
+      <div class="quotes-grid">
+        <div class="q-item">
+          <span class="qm">&ldquo;</span>
+          <div class="q-text">Příroda nám dala chuť. My jsme přidali <em>čas.</em></div>
+        </div>
+        <div class="q-item">
+          <span class="qm">&ldquo;</span>
+          <div class="q-text">2 dny fermentace. 2 týdny zrání. <em>16 dní</em>, které nejde zkrátit.</div>
+        </div>
+        <div class="q-item">
+          <span class="qm">&ldquo;</span>
+          <div class="q-text">Bukový kouř si cestu ke chuti <em>nenechá překazit.</em></div>
+        </div>
+        <div class="q-item">
+          <span class="qm">&ldquo;</span>
+          <div class="q-text">Jalovec. Medvědí česnek. Buk. <em>Příroda věděla, co dělá.</em></div>
+        </div>
+        <div class="q-item">
+          <span class="qm">&ldquo;</span>
+          <div class="q-text">Krahulecká nevznikla v továrně. Vznikla v lese — a <em>dočkala se v sušárně.</em></div>
+        </div>
+      </div>
+
+      <div class="tone-tags">
+        <div class="tone-tag"><div class="tt-dot"></div><span>Klidná, bez vykřičníků</span></div>
+        <div class="tone-tag"><div class="tt-dot"></div><span>Konkrétní — čísla a fakta</span></div>
+        <div class="tone-tag"><div class="tt-dot"></div><span>Hrdá, ne nafoukaná</span></div>
+        <div class="tone-tag"><div class="tt-dot"></div><span>Česky, přirozeně</span></div>
+        <div class="tone-tag"><div class="tt-dot"></div><span>Poetická, ale přímá</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 8 — NEXT STEPS
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s8">
+  <div class="bg-layer"></div>
+
+  <div class="slide-header">
+    <img src="krahulik_logo_main.png" alt="Krahulík" style="height: 102px; width: auto; opacity: 0.9; margin-left: 2px; position: relative; z-index: 60;">
+    <div class="header-ribon-right">
+      <span class="header-slogan">S láskou k přírodě</span>
+      <div class="header-line-v"></div>
+      <span class="header-slogan">Navrhovaný postup</span>
+    </div>
+  </div>
+
+  <div class="slide-inner">
+    <div class="s8-content">
+
+      <div class="s8-head">
+        <span class="eyebrow">Navrhovaný postup</span>
+        <div class="s8-title">Co dál</div>
+        <div class="gold-line-short"></div>
+      </div>
+
+      <div class="steps-row" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="step-col">
+          <div class="sc-dot"></div>
+          <span class="sc-num">Krok 01</span>
+          <div class="sc-title">Schválení big idea</div>
+          <p class="sc-desc">„Příroda nezná zkratky. Ani my." — potvrzení hlavního konceptu a klíčové copy linky klientem.</p>
+        </div>
+        <div class="step-col">
+          <div class="sc-dot"></div>
+          <span class="sc-num">Krok 02</span>
+          <div class="sc-title">Definice strategie</div>
+          <p class="sc-desc">Vydefinování kroků aktivace nové řady. Výběr kanálů, implementace do portfolia. Půjdeme cestou jako u snacků?</p>
+        </div>
+        <div class="step-col">
+          <div class="sc-dot"></div>
+          <span class="sc-num">Krok 03</span>
+          <div class="sc-title">Vizuální rozpracování</div>
+          <p class="sc-desc">Tvorba KV (produktový USP + image), struktura www (koncept Krahulík), produktová a image inzerce.</p>
+        </div>
+        <div class="step-col">
+          <div class="sc-dot"></div>
+          <span class="sc-num">Krok 04</span>
+          <div class="sc-title">Finální copy</div>
+          <p class="sc-desc">Texty pro packaging (všechny 3 varianty), web sekce, in-store komunikace, sociální obsah.</p>
+        </div>
+        <div class="step-col">
+          <div class="sc-dot"></div>
+          <span class="sc-num">Krok 05</span>
+          <div class="sc-title">Launch</div>
+          <p class="sc-desc">Distribuce do Tesco, Globus, Albert. Web, Instagram, in-store. Krahulecká je připravena.</p>
+        </div>
+      </div>
+
+      <div class="final-claim-box">
+        <div class="fc-text" style="font-family: 'Alfa Slab One', serif; font-style: normal;">„Příroda nám dala chuť. My jsme přidali čas."</div>
+      </div>
+
+      <div class="footer-row">
+        <span>Krahulík × feopatito · 2026</span>
+        <span>Jana Novotná / Vladimíra Popelářová</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE CLOSING — DĚKUJI
+══════════════════════════════════════════════════════════ -->
+<section class="slide" id="s-closing">
+  <div class="bg-texture"></div>
+
+  <div class="slide-header" style="background: transparent; border-bottom: none;">
+  </div>
+
+  <div class="slide-inner" style="padding-bottom: 0; display: flex; align-items: center; justify-content: center;">
+    <div class="s1-content" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 36px;">
+
+      <img src="krahulik_logo_main.png" alt="Krahulík Logo" class="main-logo" style="max-width: clamp(280px, 38vw, 480px); height: auto;">
+
+      <div style="font-family: 'Alfa Slab One', serif; font-size: clamp(28px, 4.5vw, 64px); color: var(--gold); letter-spacing: 0.06em; line-height: 1.1; text-transform: none;">
+        Děkuji za pozornost.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+</div><!-- /deck -->
+
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<div id="nav">
+  <button class="nav-btn" id="btn-prev" onclick="navigate(-1)" aria-label="Předchozí">&#8592;</button>
+  <div id="slide-counter">01 / 11</div>
+  <button class="nav-btn" id="btn-next" onclick="navigate(1)" aria-label="Další">&#8594;</button>
+</div>
+
+<div id="progress"></div>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <div id="lightbox-content"></div>
+</div>
+
+
+<script>
+  const slides  = document.querySelectorAll('.slide');
+  const dots    = document.querySelectorAll('.dot');
+  const counter = document.getElementById('slide-counter');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  let current   = 0;
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  // Lightbox logic
+  function openLightbox(el) {
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightbox-content');
+    content.innerHTML = '';
+    
+    const img = el.querySelector('img');
+    const video = el.querySelector('video');
+    
+    if (img) {
+      const clone = img.cloneNode();
+      clone.style = '';
+      content.appendChild(clone);
+    } else if (video) {
+      const clone = video.cloneNode(true);
+      clone.style = '';
+      clone.muted = false;
+      clone.controls = true;
+      content.appendChild(clone);
+    }
+    
+    lb.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('lightbox-content').innerHTML = '';
+  }
+
+  // Generuj tečky dynamicky
+  const progress = document.getElementById('progress');
+  for (let i = 0; i < slides.length; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    progress.appendChild(d);
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= slides.length) return;
+    slides[current].classList.remove('active');
+    progress.children[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    progress.children[current].classList.add('active');
+    counter.textContent = pad(current + 1) + ' / ' + pad(slides.length);
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === slides.length - 1;
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                     { e.preventDefault(); navigate(-1); }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End')  goTo(slides.length - 1);
+    if (e.key >= '1' && e.key <= '8') goTo(parseInt(e.key) - 1);
+  });
+
+  // Touch / swipe
+  let touchX = null, touchY = null;
+  document.addEventListener('touchstart', function(e) {
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+    touchX = touchY = null;
+  });
+
+  goTo(0);
+</script>
+
+</body>
+</html>
