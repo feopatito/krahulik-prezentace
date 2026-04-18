@@ -1683,9 +1683,16 @@ html, body {
         <img src="ref_smokehouse.jpg" alt="Sušárna" style="width:100%;height:100%;object-fit:cover;">
       </div>
 
+      <!-- Nové promo video vlevo ve druhém řádku -->
+      <div class="zoom-hint" onclick="openLightbox(this)" style="grid-column: 1 / 2; overflow:hidden;border-radius:4px;height:clamp(180px,22vh,280px);">
+        <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+          <source src="klobasky_promo_v1.mp4" type="video/mp4">
+        </video>
+      </div>
+
       <!-- Video uprostřed ve druhém řádku gridu -->
-      <div class="zoom-hint" onclick="openLightbox(this)" style="grid-column: 2 / 3; width:100%; max-width:400px; margin:0 auto; border-radius:4px; overflow:hidden;">
-        <video autoplay muted loop playsinline style="width:100%;max-height:clamp(180px,22vh,280px);object-fit:cover;display:block;">
+      <div class="zoom-hint" onclick="openLightbox(this)" style="grid-column: 2 / 3; overflow:hidden;border-radius:4px;height:clamp(180px,22vh,280px);">
+        <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
           <source src="ref_video.mp4" type="video/mp4">
         </video>
       </div>
