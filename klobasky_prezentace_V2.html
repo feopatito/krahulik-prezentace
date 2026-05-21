@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krahulík — Krahulecká fermentovaná klobása 2026 V2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #0a1a10;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#deck {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  top: 0; left: 0;
+  transform-origin: top left;
+  background: #0f1f14;
+}
+
+.slide {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  top: 0; left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  overflow: hidden;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.slide img.slide-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Extra slides (non-artboard) ── */
+.slide-extra {
+  background: #0f2318;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 60px 80px;
+}
+.slide-extra img {
+  max-width: 100%;
+  max-height: 860px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.slide-extra .caption {
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  color: rgba(193,162,115,0.7);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Nav ── */
+#nav {
+  position: fixed;
+  bottom: 28px; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px;
+  z-index: 9999;
+}
+.nav-btn {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(193,162,115,0.4);
+  border-radius: 50%;
+  background: rgba(10,26,16,0.82);
+  backdrop-filter: blur(8px);
+  color: #C1A273;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: rgba(193,162,115,0.18); border-color: #C1A273; }
+.nav-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+#slide-counter {
+  font-family: sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: rgba(193,162,115,0.55);
+  min-width: 64px; text-align: center;
+}
+
+/* ── Dots ── */
+#progress {
+  position: fixed;
+  right: 22px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 9px;
+  z-index: 9999;
+}
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(193,162,115,0.25);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dot.active { background: #C1A273; transform: scale(1.6); }
+</style>
+</head>
+<body>
+
+<div id="deck">
+
+  <!-- SLIDE 1 — Title (Artboard 1) -->
+  <section class="slide active" id="s1">
+    <img class="slide-bg" src="Artboard_1.jpg" alt="Krahulík — Prezentace 2026">
+  </section>
+
+  <!-- SLIDE 2 — Big Idea (Artboard 2) -->
+  <section class="slide" id="s2">
+    <img class="slide-bg" src="Artboard_2.jpg" alt="Příroda nezná zkřatky. Ani my.">
+  </section>
+
+  <!-- SLIDE 3 — Výrobní příběh (Artboard 3) -->
+  <section class="slide" id="s3">
+    <img class="slide-bg" src="Artboard_3.jpg" alt="Fermentace · Uzení · Zrání">
+  </section>
+
+  <!-- SLIDE 4 — Lifestyle KV (Artboard 4) -->
+  <section class="slide" id="s4">
+    <img class="slide-bg" src="Artboard_4.jpg" alt="Zraje u lesa, dozrává s vámi">
+  </section>
+
+  <!-- SLIDE 5 — Produkt: Original (Artboard 5) -->
+  <section class="slide" id="s5">
+    <img class="slide-bg" src="Artboard_5.jpg" alt="Krahulecká — Original">
+  </section>
+
+  <!-- SLIDE 6 — Produkt: Jalovec (Artboard 6) -->
+  <section class="slide" id="s6">
+    <img class="slide-bg" src="Artboard_6.jpg" alt="Krahulecká — S příchutí jalovce">
+  </section>
+
+  <!-- SLIDE 7 — Produkt: Medvědí česnek (Artboard 7) -->
+  <section class="slide" id="s7">
+    <img class="slide-bg" src="Artboard_7.jpg" alt="Krahulecká — S medvědím česnekem">
+  </section>
+
+  <!-- SLIDE 8 — Instore: Wobler + Stojan -->
+  <section class="slide" id="s8">
+    <div class="slide-extra" style="flex-direction: row; gap: 60px; align-items: center; justify-content: center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <img src="krahulik_klobasa_woblar_copy.jpg" style="max-height:820px;max-width:700px;object-fit:contain;border-radius:4px;">
+        <span class="caption">Wobler · Instore</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <img src="1-krahulik_celorocni_stojan_nahled_1_copy.jpg" style="max-height:820px;max-width:780px;object-fit:contain;border-radius:4px;">
+        <span class="caption">Celoroční stojan · Instore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9 — WWW Microsite -->
+  <section class="slide" id="s9">
+    <div class="slide-extra">
+      <img src="krahulik_www_microsite_copy.jpg" style="max-height:900px;max-width:1800px;">
+      <span class="caption">Návrh WWW microsite · Krahulecká klobása 2026</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 10 — Produktové koláže -->
+  <section class="slide" id="s10">
+    <div class="slide-extra" style="flex-direction:row;gap:40px;align-items:center;justify-content:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <img src="Klabosay_original_copy.jpg" style="max-height:560px;max-width:520px;object-fit:contain;border-radius:4px;">
+        <span class="caption">Original</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <img src="Klabosay_jalovec_copy.jpg" style="max-height:560px;max-width:520px;object-fit:contain;border-radius:4px;">
+        <span class="caption">Jalovec</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <img src="Klabosay_medvedi_cesnek_copy.jpg" style="max-height:560px;max-width:520px;object-fit:contain;border-radius:4px;">
+        <span class="caption">Medvědí česnek</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>&#8592;</button>
+  <span id="slide-counter">1 / 10</span>
+  <button class="nav-btn" id="btn-next" onclick="go(1)">&#8594;</button>
+</nav>
+
+<div id="progress"></div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
+let cur = 0;
+
+// Build dots
+const prog = document.getElementById('progress');
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  prog.appendChild(d);
+});
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  document.querySelectorAll('.dot')[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(total - 1, n));
+  slides[cur].classList.add('active');
+  document.querySelectorAll('.dot')[cur].classList.add('active');
+  document.getElementById('slide-counter').textContent = (cur + 1) + ' / ' + total;
+  document.getElementById('btn-prev').disabled = cur === 0;
+  document.getElementById('btn-next').disabled = cur === total - 1;
+}
+
+function go(dir) { goTo(cur + dir); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+});
+
+// Touch swipe
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+});
+
+// Scale to fit
+const W = 1920, H = 1080;
+function scale() {
+  const s = Math.min(window.innerWidth / W, window.innerHeight / H);
+  const deck = document.getElementById('deck');
+  deck.style.transform = `scale(${s})`;
+  deck.style.left = Math.round((window.innerWidth - W * s) / 2) + 'px';
+  deck.style.top = Math.round((window.innerHeight - H * s) / 2) + 'px';
+}
+scale();
+window.addEventListener('resize', scale);
+</script>
+</body>
+</html>
